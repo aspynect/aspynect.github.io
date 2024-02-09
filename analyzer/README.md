@@ -29,7 +29,7 @@ I would like to:
 - Simple splits formula was inspired by [Source28's](https://twitter.com/Source28_) splits generator
 
 ## I have an idea/question! How can I contact you?
-- Message me on Discord at aspyn#0719
+- Message me on Discord at aspynect
 - Message me on Twitter [here](https://twitter.com/aspynect)
 
 ## Special thanks:
