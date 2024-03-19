@@ -30,7 +30,7 @@ I would like to:
 
 ## I have an idea/question! How can I contact you?
 - Message me on Discord at aspynect
-- Message me on Twitter [here](https://twitter.com/aspynect)
+- Message me on Twitter [here](https://twitter.com/aspyndumpy)
 
 ## Special thanks:
 - WamWooWam and Mini for assistance in learning JS, couldn't have done it without them
