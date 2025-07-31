@@ -11,7 +11,7 @@ async function onDrop(ev) {
         ptag.innerHTML = "File failed, file is either empty or not a .lss file";
         return;
     }
-    ptag.innerHTML = "Drop a splits file to count runs instead";
+    ptag.innerHTML = "Drop a splits file to count runs";
 
 
     let fileText = await file.text();
