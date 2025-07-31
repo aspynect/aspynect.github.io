@@ -28,7 +28,7 @@ async function onDrop(ev) {
     let attempts = splits.querySelectorAll('Attempt');
 
     for (let attempt of attempts) {
-        let gameTime = attempt.querySelector('Gametime');
+        let gameTime = attempt.querySelector('GameTime');
         let realTime = attempt.querySelector('RealTime');
 
         if (gameTime) {
