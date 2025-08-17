@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Leaderboard Archival Tool</title>
-        <link rel="icon" type="image/x-icon" href="/!assets/pistachio1b.png">
+        <link rel="stylesheet" href="/styles.css">
+        <link rel="icon" type="image/x-icon" href="/pistachio1b.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta property="og:title" content="splits.tools - Leaderboard Archival Tool">
         <meta property="og:description" content="Archive leaderboards to CSV">
@@ -12,13 +13,16 @@
         <meta name="theme-color" content="#ff00ff">
     </head>
 <body>
-    <h1> Leaderboard Archival Tool</h1>
-    <p>Input the abbreviation for a leaderboard to get categories, then select the desired subcategories and click the category name to download as csv (note: if no subcategories are selected, all subcategories will be downloaded)</p>
-    <form id="leaderboard-form">
-        <input type="text" id="abbreviation">
-        <input type="submit">
-    </form>
-    <div id="categories"></div>
-    <script src="scripts/archival.js"></script>
+    <main>
+        <h1> Leaderboard Archival Tool</h1>
+        <p>Input the abbreviation for a leaderboard to get categories, then select the desired subcategories and click the category name to download as csv (note: if no subcategories are selected, all subcategories will be downloaded)</p>
+        <form id="leaderboard-form">
+            <input type="text" id="abbreviation">
+            <input type="submit">
+        </form>
+        <div id="categories"></div>
+    </main>
+<script src="scripts/archival.js"></script>
+<script src="https://aspyn.gay/kitty/kitty.js"></script>
 </body>
 </html>

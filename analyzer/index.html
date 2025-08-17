@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Splits Analyzer</title>
-        <link rel="stylesheet" href=/!assets/style.css>
-        <link rel="icon" type="image/x-icon" href="/!assets/pistachio1b.png">
+        <link rel="stylesheet" href=/styles.css>
+        <link rel="icon" type="image/x-icon" href="/pistachio1b.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta property="og:title" content="splits.tools - Splits Generator">
         <meta property="og:description" content="Tool to parse LiveSplit files and generate custom comparisons">
@@ -12,32 +12,19 @@
         <meta property="og:url" content="https://www.splits.tools">
         <meta name="theme-color" content="#ff00ff">
     </head>
-    <body>
+<body>
+    <main>
         <div class="background-image"></div>
-        <div class="drop-zone">
-            <div class="welcome-content">
-                <h1>Splits Analyzer and Comparison Generator</h1>
-                <h2>What does this do?</h2>
-                <p>This tool functions in three primary parts:</p>
-                <p>- Parse and display splits data</p>
-                <p>- Analyze data and provide statistics</p>
-                <p>- Create custom comparison</p>
-                <h2>To start analysis, drag a splits file (.lss) onto the page!</h2>
-                <p>*Please note, the statistics and custom comparison may not be accurate with a low sample size of runs</p>
-                <br>
-                <p>Background image source: <a class="background" target="_blank" href=""></a></p>
-            </div>
+        <h1>Splits Analyzer and Comparison Generator</h1>
+        <p id="drop-zone-ptag">Drop a splits file to analyze</p>
+        <input type="radio" id="rta" name="comparison-type" value="RealTime" checked>
+        <label for="rta">RTA</label>
+        <input type="radio" id="igt" name="comparison-type" value="GameTime">
+        <label for="igt">IGT</label>
+        <div id="display">
         </div>
-        <div class="footer">
-            Developed and Maintained by <a href="https://twitter.com/aspyndumpy" target="_blank">aspyn</a><br>
-            Simple Comparison Formula by <a href="https://twitter.com/Source28_" target="_blank">Source</a><br>
-            Source code and more information can be found <a href="https://github.com/aspynect/aspynect.github.io/tree/main/analyzer" target="_blank">here</a>
-        </div>
-        <script src="scripts/parse.js"></script>
-        <script src="/!global_scripts/log.js"></script>
-        <script src="/!global_scripts/background.js"></script>
-        <script src="/!global_scripts/timeconvert.js"></script>
-        <script src="/!global_scripts/filecheck.js"></script>
-        <script src="/!global_scripts/dropzone.js"></script>
-    </body>
+    <script src="scripts/analyzer.js"></script>
+    <script src="https://aspyn.gay/kitty/kitty.js"></script>
+    </main>
+</body>
 </html>
