@@ -28,7 +28,7 @@ async function addComparison(event, segmentsInfo, comparisonType) {
     let newHeaderCell = document.createElement("th")
     let newHeaderCell2 = document.createElement("th")
     newHeaderCell.textContent = `${secondsToTime(segments.reduce((acc, seg) => acc + (seg || 0), 0))} (split times)`
-    newHeaderCell2.textContent = `${secondsToTime(segments.reduce((acc, seg) => acc + (seg || 0), 0))} (split times)`
+    newHeaderCell2.textContent = `${secondsToTime(segments.reduce((acc, seg) => acc + (seg || 0), 0))}`
     headerRow.appendChild(newHeaderCell)
     headerRow.appendChild(newHeaderCell2)
 
