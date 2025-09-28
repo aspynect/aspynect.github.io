@@ -1,17 +1,21 @@
 async function adjustSplits(deltas, splits, fileName) {
     let segments = splits.querySelectorAll('Segment');
+    let asymmetric = document.getElementById('asymmBox').checked;
+    let totalAdjustment = 0
 
     segments.forEach((segment, index) => {
-        if (deltas[index] === 0) return;
-
         let adjustment = deltas[index];
-
+        totalAdjustment += adjustment;
+        
         segment.querySelectorAll('SplitTime > RealTime, SplitTime > GameTime').forEach(timeElement => {
             let currentSeconds = timeToSeconds(timeElement.textContent);
-            let newSeconds = currentSeconds + adjustment;
+            
+            let newSeconds = asymmetric ? currentSeconds + totalAdjustment : currentSeconds + adjustment;
             timeElement.textContent = secondsToTimeXML(newSeconds);
         });
 
+        if (deltas[index] === 0) return;
+        
         segment.querySelectorAll('BestSegmentTime > RealTime, BestSegmentTime > GameTime').forEach(timeElement => {
             let currentSeconds = timeToSeconds(timeElement.textContent);
             let newSeconds = currentSeconds + adjustment;
@@ -25,24 +29,26 @@ async function adjustSplits(deltas, splits, fileName) {
         });
     });
 
-    segments.forEach((segment, index) => {
-        let adjustment = deltas[index];
-        if (adjustment === 0 || index >= segments.length - 1) return;
+    if (!asymmetric) {
+        segments.forEach((segment, index) => {
+            let adjustment = deltas[index];
+            if (adjustment === 0 || index >= segments.length - 1) return;
 
-        let nextSegment = segments[index + 1];
+            let nextSegment = segments[index + 1];
 
-        nextSegment.querySelectorAll('BestSegmentTime > RealTime, BestSegmentTime > GameTime').forEach(timeElement => {
-            let currentSeconds = timeToSeconds(timeElement.textContent);
-            let newSeconds = currentSeconds - adjustment;
-            timeElement.textContent = secondsToTimeXML(newSeconds);
+            nextSegment.querySelectorAll('BestSegmentTime > RealTime, BestSegmentTime > GameTime').forEach(timeElement => {
+                let currentSeconds = timeToSeconds(timeElement.textContent);
+                let newSeconds = currentSeconds - adjustment;
+                timeElement.textContent = secondsToTimeXML(newSeconds);
+            });
+
+            nextSegment.querySelectorAll('SegmentHistory > Time > RealTime, SegmentHistory > Time > GameTime').forEach(timeElement => {
+                let currentSeconds = timeToSeconds(timeElement.textContent);
+                let newSeconds = currentSeconds - adjustment;
+                timeElement.textContent = secondsToTimeXML(newSeconds);
+            });
         });
-
-        nextSegment.querySelectorAll('SegmentHistory Time RealTime, SegmentHistory Time GameTime').forEach(timeElement => {
-            let currentSeconds = timeToSeconds(timeElement.textContent);
-            let newSeconds = currentSeconds - adjustment;
-            timeElement.textContent = secondsToTimeXML(newSeconds);
-        });
-    });
+    }
 
     let xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>\n';
     let xmlString = xmlHeader + new XMLSerializer().serializeToString(splits.documentElement);
@@ -136,7 +142,7 @@ async function onDrop(ev) {
         let deltaCell = document.createElement('td');
         let deltaInput = document.createElement('input');
         deltaInput.type = 'number';
-        deltaInput.step = '0.001';
+        deltaInput.step = '0.01';
         deltaInput.id = `delta-${index}`;
         deltaCell.appendChild(deltaInput);
         tr.appendChild(deltaCell);
@@ -146,6 +152,14 @@ async function onDrop(ev) {
     table.appendChild(tableHead);
     table.appendChild(tableBody);
 
+    let asymmBox = document.createElement('input')
+    asymmBox.type = 'checkbox';
+    asymmBox.id = 'asymmBox';
+    asymmBox.title = 'Adjust each split individually without applying the delta to the next split'
+    let asymmLabel = document.createElement('label');
+    asymmLabel.htmlFor = 'asymmBox';
+    asymmLabel.textContent = 'Asymmetric mode';
+    asymmLabel.title = asymmBox.title;
 
     let button = document.createElement('button');
     button.textContent = 'Adjust Splits';
@@ -160,6 +174,9 @@ async function onDrop(ev) {
     };
 
     display.appendChild(table);
+    display.appendChild(asymmBox);
+    display.appendChild(asymmLabel);
+    display.appendChild(document.createElement('br'));
     display.appendChild(button);
 }
 
